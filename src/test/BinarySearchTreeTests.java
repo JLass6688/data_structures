@@ -4,9 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Iterator;
+
 import org.junit.Test;
 
 import algorithms.implementations.BinarySearchTree;
+import algorithms.implementations.TreeTraversalOrder;
 
 public class BinarySearchTreeTests {
 	private int[] testVals = {12, 7, 19, 6, 9, 1, 14, 13, 8, 44, 102, 11, 4};
@@ -64,6 +67,82 @@ public class BinarySearchTreeTests {
 		BinarySearchTree<Integer> tree = getPopulatedTree();
 		
 		assertFalse(tree.isEmpty());
+	}
+	
+	@Test
+	public void test_preorder_travseral() {
+		BinarySearchTree<Integer> tree = getPopulatedTree();
+		Iterator<Integer> it = tree.iterator(TreeTraversalOrder.PRE_ORDER);
+		
+		assertEquals(12, (int) it.next());
+		assertEquals(7, (int) it.next());
+		assertEquals(6, (int) it.next());
+		assertEquals(1, (int) it.next());
+		assertEquals(4, (int) it.next());
+		assertEquals(9, (int) it.next());
+		assertEquals(8, (int) it.next());
+		assertEquals(11, (int) it.next());
+		assertEquals(19, (int) it.next());
+		assertEquals(14, (int) it.next());
+		assertEquals(13, (int) it.next());
+		assertEquals(44, (int) it.next());
+	}
+	
+	@Test
+	public void test_inorder_traversal() {
+		BinarySearchTree<Integer> tree = getPopulatedTree();
+		Iterator<Integer> it = tree.iterator(TreeTraversalOrder.IN_ORDER);
+		
+		assertEquals(1 , (int) it.next());
+		assertEquals(4, (int) it.next());
+		assertEquals(6, (int) it.next());
+		assertEquals(7, (int) it.next());
+		assertEquals(8, (int) it.next());
+		assertEquals(9, (int) it.next());
+		assertEquals(11, (int) it.next());
+		assertEquals(12, (int) it.next());
+		assertEquals(13, (int) it.next());
+		assertEquals(14, (int) it.next());
+		assertEquals(19, (int) it.next());
+		assertEquals(44, (int) it.next());
+	}
+	
+	@Test
+	public void test_postorder_traversal() {
+		BinarySearchTree<Integer> tree = getPopulatedTree();
+		Iterator<Integer> it = tree.iterator(TreeTraversalOrder.POST_ORDER);
+		
+		assertEquals(4, (int) it.next());
+		assertEquals(1, (int) it.next());
+		assertEquals(6, (int) it.next());
+		assertEquals(8, (int) it.next());
+		assertEquals(11, (int) it.next());
+		assertEquals(9, (int) it.next());
+		assertEquals(7, (int) it.next());
+		assertEquals(13, (int) it.next());
+		assertEquals(14, (int) it.next());
+		assertEquals(102, (int) it.next());
+		assertEquals(44, (int) it.next());
+		assertEquals(19, (int) it.next());
+	}
+	
+	@Test
+	public void test_levelorder_traversal() {
+		BinarySearchTree<Integer> tree = getPopulatedTree();
+		Iterator<Integer> it = tree.iterator(TreeTraversalOrder.LEVEL_ORDER);
+		
+		assertEquals(12, (int) it.next());
+		assertEquals(7, (int) it.next());
+		assertEquals(19, (int) it.next());
+		assertEquals(6, (int) it.next());
+		assertEquals(9, (int) it.next());
+		assertEquals(14, (int) it.next());
+		assertEquals(44, (int) it.next());
+		assertEquals(1, (int) it.next());
+		assertEquals(8, (int) it.next());
+		assertEquals(11, (int) it.next());
+		assertEquals(13, (int) it.next());
+		assertEquals(102, (int) it.next());
 	}
 	
 	private BinarySearchTree<Integer> getPopulatedTree() {
