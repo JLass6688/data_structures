@@ -25,12 +25,6 @@ public class UnionFind {
 			root = ids[root];
 		}
 		
-		while(k != root) {
-			int parent = ids[k];
-			ids[k] = root;
-			k = parent;
-		}
-		
 		return root;
 	}
 	
