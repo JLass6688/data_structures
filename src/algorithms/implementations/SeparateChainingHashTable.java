@@ -158,7 +158,7 @@ public class SeparateChainingHashTable<K, V> {
 		
 		return null;
 	}
-	
+
 	private void expandTable() {
 		capacity *= 2;
 		LinkedList<Entry<K,V>>[] newTable = new LinkedList[capacity];
