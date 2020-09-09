@@ -61,8 +61,40 @@ public class Sort{
 			counter = pointer;
 		}
 	}
+	
+	public static void quickSort(int[] array) {
+		quickSort(array, 0, array.length - 1);
+	}
+	
+	
+	
+	private static void quickSort(int[] array, int low, int high) {
+		if(low < high) {
+			int partition = quickSortPartition(array, low, high);
+			
+			quickSort(array, low, partition - 1);
+			quickSort(array, partition + 1, high);
+		}
+	}
 
+	private static int quickSortPartition(int[] array, int start, int end) {
+		int pointer = start;
+		int counter = start + 1;
+		int lessThanIdx = start;
+		
+		while(counter <= end) {
+			if(array[counter] < array[pointer]) {
+				swap(counter, lessThanIdx + 1, array);
+				lessThanIdx++;
+			}
+			
+			counter++;
+		}
 
+		swap(pointer, lessThanIdx, array);
+
+		return lessThanIdx;
+	}
 	
 	private static void swap(int i, int j, int[] array) {
 		int val_i = array[i];

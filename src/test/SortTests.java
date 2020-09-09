@@ -52,6 +52,21 @@ public class SortTests {
 		assertEquals(18 , test[7]);
 	}
 	
+	@Test
+	public void test_quickSort() {
+		int[] test = getPopulatedArrayWithIntegers();
+		Sort.quickSort(test);
+		
+		assertEquals(1 , test[0]);
+		assertEquals(2 , test[1]);
+		assertEquals(3 , test[2]);
+		assertEquals(9 , test[3]);
+		assertEquals(12 , test[4]);
+		assertEquals(15 , test[5]);
+		assertEquals(16 , test[6]);
+		assertEquals(18 , test[7]);
+	}
+	
 	private int[] getPopulatedArrayWithIntegers() {
 		return new int[] {3,9,15,2,12,18,16,1};
 	}
