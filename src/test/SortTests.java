@@ -67,6 +67,21 @@ public class SortTests {
 		assertEquals(18 , test[7]);
 	}
 	
+	@Test
+	public void test_mergeSort() {
+		int[] test = getPopulatedArrayWithIntegers();
+		int[] result = Sort.mergeSort(test);
+		
+		assertEquals(1 , result[0]);
+		assertEquals(2 , result[1]);
+		assertEquals(3 , result[2]);
+		assertEquals(9 , result[3]);
+		assertEquals(12 , result[4]);
+		assertEquals(15 , result[5]);
+		assertEquals(16 , result[6]);
+		assertEquals(18 , result[7]);
+	}
+	
 	private int[] getPopulatedArrayWithIntegers() {
 		return new int[] {3,9,15,2,12,18,16,1};
 	}

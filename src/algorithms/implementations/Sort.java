@@ -1,5 +1,7 @@
 package algorithms.implementations;
 
+import java.util.Arrays;
+
 public class Sort{
 
 	public static void bubbleSort(int[] array) {
@@ -66,8 +68,64 @@ public class Sort{
 		quickSort(array, 0, array.length - 1);
 	}
 	
+	public static int[] mergeSort(int[] array) {
+		return mergeSortPartition(array);
+	}
 	
 	
+	
+	private static int[] mergeSortPartition(int[] array) {
+		if(array.length <= 1) return array;
+		
+		int midpointIndex = (int) Math.floor(array.length / 2);
+		
+		int[] partition_1 = Arrays.copyOfRange(array, 0, midpointIndex);
+		int[] partition_2 = Arrays.copyOfRange(array, midpointIndex, array.length);
+		
+		partition_1 = mergeSortPartition(partition_1);
+		partition_2 = mergeSortPartition(partition_2);
+		
+		return merge(partition_1, partition_2);
+	}
+	
+	private static int[] merge(int[] arr_1, int[] arr_2) {
+		int mergeLength = arr_1.length + arr_2.length;
+		int[] mergedArr = new int[mergeLength];
+
+		int pointer1 = 0;
+		int pointer2 = 0;
+		
+		for(int i = 0; i < mergeLength; i++) {
+			if(pointer1 >= arr_1.length) {
+				mergedArr[i] = arr_2[pointer2];
+				pointer2++;
+				continue;
+			}
+			
+			if(pointer2 >= arr_2.length) {
+				mergedArr[i] = arr_1[pointer1];
+				pointer1++;
+				continue;
+			}
+			
+			if(arr_1[pointer1] < arr_2[pointer2]) {
+				mergedArr[i] = arr_1[pointer1];
+				pointer1++;
+			} else if (arr_1[pointer1] > arr_2[pointer2]) {
+				mergedArr[i] = arr_2[pointer2];
+				pointer2++;
+			} else {
+				mergedArr[i] = arr_1[pointer1];
+				mergedArr[i+1] = arr_2[pointer2];
+				i+= 1;
+				pointer1++;
+				pointer2++;
+			}
+		}
+		
+		return mergedArr;
+	}
+
 	private static void quickSort(int[] array, int low, int high) {
 		if(low < high) {
 			int partition = quickSortPartition(array, low, high);
